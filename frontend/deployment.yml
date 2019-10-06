@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipes-frontend
+spec:
+  selector:
+    matchLabels:
+      app: recipes-frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: recipes-frontend
+    spec:
+      containers:
+      - name: recipes-frontend
+        image: nginx:1.17.4
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: dist
+      initContainers:
+      - name: build-recipes-frontend
+        image: node:12.11.0
+        env:
+        - name: BACKEND
+          valueFrom:
+            secretKeyRef:
+              name: recipes-backend-secret
+              key: backend
+        command: ['/bin/sh']
+        args: ['-c', 'git clone https://github.com/globz-eu/recipes.git && cd recipes && npm install && npm run build && echo "{\"backend\":\"$(BACKEND)\"}" > dist/config.json && mv dist/* /mnt/dist/']
+        volumeMounts:
+        - mountPath: /mnt/dist
+          name: dist
+      volumes:
+      - name: dist
+        emptyDir: {}

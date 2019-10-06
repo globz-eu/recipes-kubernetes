@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: recipes-ingress
+spec:
+  rules:
+  - host: ***REMOVED***
+    http:
+      paths:
+      - backend:
+          serviceName: recipes-frontend
+          servicePort: 80
