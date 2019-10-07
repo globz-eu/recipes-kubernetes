@@ -29,17 +29,19 @@ spec:
           name: dist
       initContainers:
       - name: build-recipes-frontend
-        image: node:12.11.0
+        image: globz/wget
         env:
         - name: BACKEND
           valueFrom:
             secretKeyRef:
               name: recipes-backend-secret
               key: backend
+        - name: VERSION
+          value: 0.2.5
         command: ['/bin/sh']
-        args: ['-c', 'git clone https://github.com/globz-eu/recipes.git && cd recipes && npm install && npm run build && echo "{\"backend\":\"$(BACKEND)\"}" > dist/config.json && mv dist/* /mnt/dist/']
+        args: ['-c', 'wget https://github.com/globz-eu/recipes/releases/download/v$(VERSION)/recipes-v$(VERSION).tar.gz && tar -xzf recipes-v$(VERSION).tar.gz && rm recipes-v$(VERSION).tar.gz && echo "{\"backend\":\"$(BACKEND)\"}" > config.json']
         volumeMounts:
-        - mountPath: /mnt/dist
+        - mountPath: /mnt
           name: dist
       volumes:
       - name: dist
