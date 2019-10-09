@@ -32,10 +32,7 @@ spec:
         image: globz/wget
         env:
         - name: BACKEND
-          valueFrom:
-            secretKeyRef:
-              name: recipes-backend-secret
-              key: backend
+          value: {{.Values.backendHost}}
         - name: VERSION
           value: 0.2.5
         command: ['/bin/sh']

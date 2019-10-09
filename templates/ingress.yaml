@@ -4,7 +4,7 @@ metadata:
   name: recipes-ingress
 spec:
   rules:
-  - host: frontend.example.org
+  - host: {{.Values.frontendHost}}
     http:
       paths:
       - backend:
