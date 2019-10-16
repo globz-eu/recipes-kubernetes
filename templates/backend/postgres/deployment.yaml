@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-recipes
+spec:
+  selector:
+    matchLabels:
+      app: db-recipes
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: db-recipes
+    spec:
+      containers:
+      - name: db-recipes
+        image: globz/postgres
+        ports:
+        - containerPort: 5432
+        env:
+        - name: APP_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: recipes-db-app-user
+              key: password
+        - name: APP_DB
+          value: {{.Values.appDatabase}}
+        - name: APP_USER
+          valueFrom:
+            secretKeyRef:
+              name: recipes-db-app-user
+              key: user
+        - name: APP_TEST_DB
+          value: {{.Values.appTestDatabase}}

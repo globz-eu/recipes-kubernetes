@@ -1,2 +1,6 @@
 frontendHost: frontend.example.org
 backendHost: backend.example.org
+appDatabase: recipes
+appDatabaseUser: recipes
+appDatabaseUserPassword: recipesPw 
+appTestDatabase: test_recipes
