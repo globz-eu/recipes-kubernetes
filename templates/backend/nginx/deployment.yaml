@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipes-backend-nginx
+spec:
+  selector:
+    matchLabels:
+      app: recipes-backend-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: recipes-backend-nginx
+    spec:
+      containers:
+      - name: recipes-backend-nginx
+        image: globz/nginx-uwsgi-gateway
+        ports:
+        - containerPort: 80
+        env:
+        - name: APP_HOST
+          value: recipes-backend
+        - name: APP_PORT
+          value: "3031"
+        - name: APP_NAME
+          value: recipes-backend
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        volumeMounts:
+        - mountPath: /usr/nginx/html/recipes-backend/static
+          name: static
+      initContainers:
+      - name: collect-static-recipes
+        image: globz/recipes-backend
+        args: ["-c"]
+        env:
+        - name: ALLOWED_HOST
+          value: backendHost
+        - name: FRONTEND_HOST
+          value: frontendHost
+        - name: DB_HOST
+          value: databaseHost
+        - name: APP_USER_PASSWORD
+          value: password
+        - name: APP_DB
+          value: database
+        - name: APP_USER
+          value: user
+        volumeMounts:
+        - mountPath: /usr/src/app/static
+          name: static
+      volumes:
+      - name: static
+        emptyDir: {}

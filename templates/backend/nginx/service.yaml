@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: recipes-backend-nginx
+  labels:
+    app: recipes-backend-nginx
+spec:
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: recipes-backend-nginx

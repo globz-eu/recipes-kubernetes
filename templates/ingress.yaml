@@ -10,3 +10,9 @@ spec:
       - backend:
           serviceName: recipes-frontend
           servicePort: 80
+  - host: {{.Values.backendHost}}
+    http:
+      paths:
+      - backend:
+          serviceName: recipes-backend-nginx
+          servicePort: 80

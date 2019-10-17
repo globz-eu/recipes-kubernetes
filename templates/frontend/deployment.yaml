@@ -34,7 +34,7 @@ spec:
         - name: BACKEND
           value: {{.Values.backendHost}}
         - name: VERSION
-          value: 0.2.5
+          value: {{.Values.frontendVersion}}
         command: ['/bin/sh']
         args: ['-c', 'wget https://github.com/globz-eu/recipes/releases/download/v$(VERSION)/recipes-v$(VERSION).tar.gz && tar -xzf recipes-v$(VERSION).tar.gz && rm recipes-v$(VERSION).tar.gz && echo "{\"backend\":\"$(BACKEND)\"}" > config.json']
         volumeMounts:

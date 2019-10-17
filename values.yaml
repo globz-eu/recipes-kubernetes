@@ -1,6 +1,8 @@
 frontendHost: frontend.example.org
+frontendVersion: 0.2.6
 backendHost: backend.example.org
 appDatabase: recipes
 appDatabaseUser: recipes
 appDatabaseUserPassword: recipesPw 
 appTestDatabase: test_recipes
+databasePort: 5432

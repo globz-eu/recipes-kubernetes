@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipes-backend
+spec:
+  selector:
+    matchLabels:
+      app: recipes-backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: recipes-backend
+    spec:
+      containers:
+      - name: recipes-backend
+        image: globz/recipes-backend
+        args: ["-r"]
+        ports:
+        - containerPort: 3031
+        env:
+        - name: ALLOWED_HOST
+          value: {{.Values.backendHost}}
+        - name: FRONTEND_HOST
+          value: {{.Values.frontendHost}}
+        - name: DB_HOST
+          value: db-recipes
+        - name: DB_PORT
+          value: "5432"
+        - name: APP_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: recipes-db-app-user
+              key: password
+        - name: APP_DB
+          value: {{.Values.appDatabase}}
+        - name: APP_USER
+          valueFrom:
+            secretKeyRef:
+              name: recipes-db-app-user
+              key: user
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
