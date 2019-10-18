@@ -32,3 +32,10 @@ spec:
               key: user
         - name: APP_TEST_DB
           value: {{.Values.appTestDatabase}}
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: db-data
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: data-claim
