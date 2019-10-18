@@ -39,6 +39,8 @@ spec:
         image: globz/recipes-backend
         args: ["-c"]
         env:
+        - name: SECRET_KEY
+          value: verylongsecretkeywithlotsofcharacters
         - name: ALLOWED_HOST
           value: backendHost
         - name: FRONTEND_HOST
