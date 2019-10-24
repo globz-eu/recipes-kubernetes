@@ -1,9 +1,12 @@
-frontendHost: frontend.example.org
-frontendVersion: 0.2.6
-backendHost: backend.example.org
+appHost: app.example.org
+frontendHost: app.example.org
+frontendVersion: 0.2.7
+backendHost: https://app.example.org/recipes
 appDatabase: recipes
 appDatabaseUser: recipes
 appDatabaseUserPassword: recipesPw 
 appTestDatabase: test_recipes
 databasePort: 5432
 djangoSecretKey: 'verylongsecretkeywithlotsof4charactersand96numbers'
+digitaloceanAccessToken: ''
+letsencryptEMail: user@example.com 

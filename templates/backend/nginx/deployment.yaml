@@ -42,9 +42,9 @@ spec:
         - name: SECRET_KEY
           value: verylongsecretkeywithlotsofcharacters
         - name: ALLOWED_HOST
-          value: backendHost
+          value: appHost
         - name: FRONTEND_HOST
-          value: frontendHost
+          value: appHost
         - name: DB_HOST
           value: databaseHost
         - name: APP_USER_PASSWORD
