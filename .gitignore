@@ -1,1 +1,3 @@
 my_values.yaml
+*.crt
+*.key

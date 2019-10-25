@@ -35,3 +35,13 @@ helm repo add jetstack https://charts.jetstack.io
 ```bash
 helm install --name cert-manager --namespace kube-system jetstack/cert-manager --version v0.10.1
 ```
+
+## Set up client certificate authentication
+
+### Set up
+
+See [Client Certificate Authentication](https://kubernetes.github.io/ingress-nginx/examples/auth/client-certs/)
+
+* Generate Certificate Authority key and certificate and place in `ca/ac.crt` and `ca/ca.key`
+
+* Generate the Server Key, and Certificate, Sign with the CA Certificate and place in `server_certs/tls.crt` and `server_certs/tls.key`

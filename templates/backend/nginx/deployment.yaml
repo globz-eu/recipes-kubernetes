@@ -25,7 +25,7 @@ spec:
         - name: APP_NAME
           value: recipes-backend
         - name: FRONTEND_HOST
-          value: {{.Values.frontendHost}}
+          value: "*"
         resources:
           requests:
             memory: "128Mi"

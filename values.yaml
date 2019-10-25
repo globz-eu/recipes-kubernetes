@@ -1,7 +1,6 @@
-frontendHost: frontend.example.org
-backendHost: backend.example.org
+appHost: app.example.org
 frontendVersion: 0.2.7
-backendURI: https://app.example.org/recipes
+backendURI: https://app.example.org/api/recipes
 appDatabase: recipes
 appDatabaseUser: recipes
 appDatabaseUserPassword: recipesPw 
