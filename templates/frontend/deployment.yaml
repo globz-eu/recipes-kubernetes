@@ -32,7 +32,7 @@ spec:
         image: globz/wget
         env:
         - name: BACKEND
-          value: {{.Values.backendHost}}
+          value: {{.Values.backendURI}}
         - name: VERSION
           value: {{.Values.frontendVersion}}
         command: ['/bin/sh']
