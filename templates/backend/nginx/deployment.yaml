@@ -24,8 +24,6 @@ spec:
           value: "3031"
         - name: APP_NAME
           value: recipes-backend
-        - name: FRONTEND_HOST
-          value: "*"
         resources:
           requests:
             memory: "128Mi"
@@ -44,8 +42,6 @@ spec:
         - name: SECRET_KEY
           value: verylongsecretkeywithlotsofcharacters
         - name: ALLOWED_HOST
-          value: appHost
-        - name: FRONTEND_HOST
           value: appHost
         - name: DB_HOST
           value: databaseHost

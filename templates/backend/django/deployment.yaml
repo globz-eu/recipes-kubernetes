@@ -23,8 +23,6 @@ spec:
           value: {{.Values.djangoSecretKey}}
         - name: ALLOWED_HOST
           value: {{.Values.appHost}}
-        - name: FRONTEND_HOST
-          value: "*"
         - name: DB_HOST
           value: db-recipes
         - name: DB_PORT
