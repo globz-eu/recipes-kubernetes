@@ -7,4 +7,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 64Mi
+      storage: {{.Values.storageSize}}
+  {{ if and .Values.storage (eq .Values.storage "digitalocean") }}
+  storageClassName: do-block-storage
+  {{ end }}

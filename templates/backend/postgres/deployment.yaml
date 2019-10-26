@@ -32,6 +32,8 @@ spec:
               key: user
         - name: APP_TEST_DB
           value: {{.Values.appTestDatabase}}
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
         volumeMounts:
           - mountPath: /var/lib/postgresql/data
             name: db-data
