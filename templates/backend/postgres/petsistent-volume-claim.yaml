@@ -8,6 +8,6 @@ spec:
   resources:
     requests:
       storage: {{.Values.storageSize}}
-  {{ if and .Values.storage (eq .Values.storage "digitalocean") }}
+  {{ if (.Values.storage) and eq .Values.storage "digitalocean" }}
   storageClassName: do-block-storage
   {{ end }}
