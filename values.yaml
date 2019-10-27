@@ -8,4 +8,5 @@ appTestDatabase: test_recipes
 databasePort: 5432
 djangoSecretKey: 'verylongsecretkeywithlotsof4charactersand96numbers'
 digitaloceanAccessToken: ''
-letsencryptEMail: user@example.com 
+letsencryptEMail: user@example.com
+clientCert: true

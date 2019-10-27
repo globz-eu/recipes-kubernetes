@@ -5,15 +5,21 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-production
+    {{ if .Values.clientCert }}
     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
     nginx.ingress.kubernetes.io/auth-tls-secret: "default/ca-secret"
     nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
     nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    {{ end }}
 spec:
   tls:
   - hosts:
     - {{.Values.appHost}}
+    {{ if .Values.clientCert }}
     secretName: tls-secret
+    {{ else }}
+    secretName: letsencrypt-production
+    {{ end }}
   rules:
   - host: {{.Values.appHost}}
     http:
