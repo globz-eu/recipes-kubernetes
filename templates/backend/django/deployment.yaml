@@ -21,6 +21,10 @@ spec:
         env:
         - name: SECRET_KEY
           value: {{.Values.djangoSecretKey}}
+        {{ if .Values.backendDebug }}
+        - name: DEBUG
+          value: "True"
+        {{ end }}
         - name: ALLOWED_HOST
           value: {{.Values.appHost}}
         - name: DB_HOST
