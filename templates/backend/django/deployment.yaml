@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: recipes-backend
-        image: globz/recipes-backend
+        image: globz/recipes-backend:{{.Values.backendVersion}}
         args: ["-r"]
         ports:
         - containerPort: 3031
