@@ -5,7 +5,7 @@ backendURI: https://app.example.org/api/recipes
 appDatabase: recipes
 appDatabaseUser: recipes
 appDatabaseUserPassword: recipesPw 
-appTestDatabase: test_recipes
+postgresPassword: postgresPw
 databasePort: 5432
 djangoSecretKey: 'verylongsecretkeywithlotsof4charactersand96numbers'
 digitaloceanAccessToken: ''

@@ -18,6 +18,11 @@ spec:
         ports:
         - containerPort: 5432
         env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: recipes-db-admin-user
+              key: password
         - name: APP_USER_PASSWORD
           valueFrom:
             secretKeyRef:
