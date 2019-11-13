@@ -7,38 +7,29 @@ Kubernetes deployment of recipes [frontend](https://github.com/globz-eu/recipes)
 * Deploy frontend
 
 ```bash
-helm install .
+helm install recipes .
+```
+## Install NGINX Ingress
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.26.1/deploy/static/mandatory.yaml
+```
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.26.1/deploy/static/provider/cloud-generic.yaml
 ```
 
 ## Install Cert-Manager
 
-* Create cert-manager Custon Resource Definitions (CRDs)
-
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.10/deploy/manifests/00-crds.yaml
+kubectl create namespace cert-manager
 ```
 
-* Add label to enable advanced resource validation using a webhook
-
 ```bash
-kubectl label namespace kube-system certmanager.k8s.io/disable-validation="true"
-```
-
-* Add Jetstack Helm Repository
-
-```bash
-helm repo add jetstack https://charts.jetstack.io
-```
-
-* Install the cert-manager chart into the kube-system namespace
-
-```bash
-helm install --name cert-manager --namespace kube-system jetstack/cert-manager --version v0.10.1
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v0.11.0/cert-manager.yaml
 ```
 
 ## Set up client certificate authentication
-
-### Set up
 
 See [Client Certificate Authentication](https://kubernetes.github.io/ingress-nginx/examples/auth/client-certs/)
 
