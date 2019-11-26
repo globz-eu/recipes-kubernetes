@@ -1,6 +1,7 @@
 appHost: app.example.org
 frontendVersion: 0.2.14
 backendVersion: 0.1.1
+frontendAllowedHost: https://app.example.org
 backendURI: https://app.example.org/recipes
 appDatabase: recipes
 appDatabaseUser: recipes
